@@ -4,7 +4,7 @@ return {
 	opts = {},
 	config = function(_, opts)
 		require("ibl").setup({
-			indent = { char = "•" },
+			indent = { char = "·" },
 			scope = { enabled = true },
 		})
 	end,

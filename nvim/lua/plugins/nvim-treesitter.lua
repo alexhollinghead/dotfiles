@@ -11,9 +11,11 @@ return {
 		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
+				lazy = false,
+				auto_install = true,
 
 				-- Add languages to be installed here that you want installed for treesitter
-				ensure_installed = { "c", "cpp", "lua", "python", "javascript", "vim" },
+				ensure_installed = { "c", "cpp", "html", "lua", "python", "javascript", "typescript", "tsx", "vim" },
 
 				-- Endwise - end structures automatically
 				endwise = { enable = true },
@@ -64,6 +66,11 @@ return {
 						},
 					},
 				},
+				require("nvim-ts-autotag").setup({
+					lazy = false,
+					enable = true,
+					filetypes = { "html", "xml", "tsx", "typescriptreact" },
+				}),
 			})
 		end,
 	},

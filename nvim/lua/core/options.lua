@@ -10,12 +10,13 @@ vim.opt.expandtab = true
 
 --- Deindent
 -- for command mode
-vim.api.nvim_set_keymap("n", "<S-Tab>", "<<", { noremap = true })
-vim.api.nvim_set_keymap("n", "<Tab>", ">>", { noremap = true })
+vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true })
+vim.keymap.set("n", "<Tab>", ">>", { noremap = true })
 
 -- for insert mode
-vim.api.nvim_set_keymap("i", "<S-Tab>", "<C-d>", { noremap = true })
+vim.keymap.set("i", "<S-Tab>", "<C-d>", { noremap = true })
 
 -- Keymaps
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>d", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>q", ":bd<CR>", { noremap = true, silent = true })
