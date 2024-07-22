@@ -15,7 +15,18 @@ return {
 				auto_install = true,
 
 				-- Add languages to be installed here that you want installed for treesitter
-				ensure_installed = { "c", "cpp", "html", "lua", "python", "javascript", "typescript", "tsx", "vim" },
+				ensure_installed = {
+					"c",
+					"cpp",
+					"html",
+					"lua",
+					"markdown",
+					"python",
+					"javascript",
+					"typescript",
+					"tsx",
+					"vim",
+				},
 
 				-- Endwise - end structures automatically
 				endwise = { enable = true },
