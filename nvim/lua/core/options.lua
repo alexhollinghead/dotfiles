@@ -1,6 +1,7 @@
 -- Line numbering
 vim.wo.relativenumber = true
 vim.wo.number = true
+vim.opt.cursorline = true
 
 -- Tab Settings
 vim.opt.tabstop = 2
