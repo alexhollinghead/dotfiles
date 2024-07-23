@@ -16,6 +16,19 @@ return {
 			python = { "flake8" },
 		}
 
+		lint.linters.luacheck = {
+			cmd = "luacheck",
+			stdin = true,
+			args = {
+				"--globals",
+				"vim",
+			},
+			stream = "stdout",
+			ignore_exitcode = true,
+			parser = require("lint.parser").from_errorformat("%f:%l:%c: %m", {
+				source = "luacheck",
+			}),
+		}
 		local lint_augroup = vim.api.nvim_create_augroup("lint", {
 			clear = true,
 		})

@@ -19,4 +19,4 @@ require("core.options")
 require("lazy").setup("plugins", {})
 
 --Initialize colorscheme
-require("core.colorscheme")
+-- require("core.colorscheme")

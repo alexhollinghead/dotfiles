@@ -3,6 +3,10 @@ vim.wo.relativenumber = true
 vim.wo.number = true
 vim.opt.cursorline = true
 
+-- Folding
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+
 -- Tab Settings
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
