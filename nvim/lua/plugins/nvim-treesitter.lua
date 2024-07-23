@@ -2,6 +2,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter-context",
     build = function()
       pcall(require("nvim-treesitter.install").update({ with_sync = true }))
     end,
@@ -82,6 +83,7 @@ return {
           enable = true,
           filetypes = { "html", "xml", "tsx", "typescriptreact" },
         }),
+        require 'treesitter-context'.setup()
       })
     end,
   },
