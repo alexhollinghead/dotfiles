@@ -47,6 +47,15 @@ return {
 
 		lspconfig.clangd.setup({
 			capabilities = capabilities,
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--suggest-missing-includes",
+				"--pch-storage=memory",
+				"--clang-tidy",
+				"--completion-style=detailed",
+			},
+			filetypes = { "c", "cpp", "objc", "objcpp" },
 			on_attach = function(client, bufnr)
 				client.server_capabilities.signatureHelpProvider = false
 				on_attach(client, bufnr)

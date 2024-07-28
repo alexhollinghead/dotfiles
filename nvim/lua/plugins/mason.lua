@@ -31,7 +31,6 @@ return {
 				"html",
 				"lua_ls",
 				"pyright",
-				"clangd",
 			},
 
 			--auto -install configured servers

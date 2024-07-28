@@ -73,6 +73,7 @@ return {
 					end
 				end, { "i", "s" }),
 			}),
+
 			-- sources for autocompletion
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
