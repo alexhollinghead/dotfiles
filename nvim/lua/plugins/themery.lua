@@ -24,31 +24,31 @@ return {
           ]],
 				},
 				{ name = "DeepWhite", colorscheme = "deepwhite" },
+				{ name = "Dracula", colorscheme = "dracula" },
 				{ name = "Eldritch", colorscheme = "eldritch" },
+				{ name = "Melange", colorscheme = "melange" },
 				{
 					name = "Modus",
 					colorscheme = "modus",
-					before = [[
-            require("modus-themes").setup({
-              variant = "default",
-            })
-          ]],
-				},
-				{
-					name = "Modus Tinted",
-					colorscheme = "modus",
-					before = [[
-            require("modus-themes").setup({
-              variant = "tinted",
-            })
-          ]],
 				},
 				{ name = "Moonlight", colorscheme = "moonlight" },
+				{
+					name = "Neosolarized",
+					colorscheme = "neosolarized",
+					before = [[
+            require("neosolarized").setup({
+            background_set = true,
+            })
+          ]],
+				},
 				{ name = "Oh Lucy", colorscheme = "oh-lucy" },
 				{ name = "One Nord", colorscheme = "onenord" },
 				{ name = "Oxocarbon", colorscheme = "oxocarbon" },
 				"seoul256",
+				{ name = "Poimandres", colorscheme = "poimandres" },
+				{ name = "Sweetie", colorscheme = "sweetie" },
 				{ name = "Tokyo Night", colorscheme = "tokyonight" },
+				{ name = "VSCode", colorscheme = "vscode" },
 			},
 			livepreview = true,
 		})

@@ -28,7 +28,6 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"tsserver",
-				"eslint",
 				"html",
 				"lua_ls",
 				"pyright",
@@ -41,12 +40,12 @@ return {
 
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"prettier",
+				"prettierd",
 				"stylua",
+				"luacheck",
 				"black",
 				"eslint_d",
 			},
-		}
-)
+		})
 	end,
 }
