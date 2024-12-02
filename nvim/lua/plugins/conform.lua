@@ -14,6 +14,7 @@ return {
 				json = { "prettierd" },
 				python = { "black" },
 				lua = { "stylua" },
+				cpp = { "clang-format" },
 			},
 			format_on_save = {
 				async = false,

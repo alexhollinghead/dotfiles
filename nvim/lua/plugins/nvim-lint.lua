@@ -14,6 +14,7 @@ return {
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
 			python = { "flake8" },
+			cpp = { "cpplint" },
 		}
 
 		lint.linters.luacheck = {
@@ -32,6 +33,10 @@ return {
 		local lint_augroup = vim.api.nvim_create_augroup("lint", {
 			clear = true,
 		})
+
+		lint.linters.cpplint.args = {
+			"--filter=-legal/copyright",
+		}
 
 		vim.api.nvim_create_autocmd({
 			"BufEnter",
