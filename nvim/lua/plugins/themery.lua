@@ -4,6 +4,7 @@ return {
 		require("themery").setup({
 			themes = {
 				{ name = "Bamboo", colorscheme = "bamboo" },
+				{ name = "Citrus Zest", colorscheme = "citruszest" },
 				{
 					name = "Cyberdream",
 					colorscheme = "cyberdream",
@@ -13,7 +14,6 @@ return {
               })
           ]],
 				},
-				{ name = "Citrus Zest", colorscheme = "citruszest" },
 				{
 					name = "Cyberdream Light",
 					colorscheme = "cyberdream",
@@ -23,6 +23,7 @@ return {
               })
           ]],
 				},
+				{ name = "Dark Flat", colorscheme = "dark_flat" },
 				{ name = "DeepWhite", colorscheme = "deepwhite" },
 				{ name = "Dracula", colorscheme = "dracula" },
 				{ name = "Eldritch", colorscheme = "eldritch" },
@@ -41,11 +42,13 @@ return {
             })
           ]],
 				},
+				{ name = "Nightfox", colorscheme = "nightfox" },
 				{ name = "Oh Lucy", colorscheme = "oh-lucy" },
+				{ name = "One Dark", colorscheme = "onedark" },
 				{ name = "One Nord", colorscheme = "onenord" },
 				{ name = "Oxocarbon", colorscheme = "oxocarbon" },
-				"seoul256",
 				{ name = "Poimandres", colorscheme = "poimandres" },
+				{ name = "seoul256", colorscheme = "seoul256" },
 				{ name = "Sweetie", colorscheme = "sweetie" },
 				{ name = "Tokyo Night", colorscheme = "tokyonight" },
 				{ name = "VSCode", colorscheme = "vscode" },
