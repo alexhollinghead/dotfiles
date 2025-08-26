@@ -8,7 +8,6 @@ return {
 
 	config = function()
 		require("mason").setup()
-		require("mason-lspconfig").setup()
 
 		-- Global Configuration
 		local lspconfig = require("lspconfig")
@@ -73,9 +72,58 @@ return {
 			},
 		})
 
-		lspconfig.ts_ls.setup({
+		local vue_ls_root = vim.fn.stdpath("data")
+			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+		local tsdk = vim.fn.stdpath("data")
+			.. "/mason/packages/vtsls/node_modules/typescript/lib"
+
+		local vue_language_server_path = vim.fn.stdpath("data")
+			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+		local vue_plugin = {
+			name = "@vue/typescript-plugin",
+			location = vue_language_server_path,
+			languages = { "vue" },
+			configNamespace = "typescript",
+		}
+
+		lspconfig.vtsls.setup({
 			capabilities = capabilities,
+			on_attach = on_attach,
+			filetypes = {
+				"typescript",
+				"javascript",
+				"javascriptreact",
+				"typescriptreact",
+				"vue",
+			},
+			settings = {
+				vtsls = {
+					tsserver = {
+						globalPlugins = {
+							{
+								name = "@vue/typescript-plugin",
+								location = vue_ls_root,
+								languages = { "vue" },
+								configNamespace = "typescript",
+							},
+						},
+					},
+				},
+			},
 		})
+
+		-- start vue_ls (Volar) for template intelligence, diagnostics, code actions
+		lspconfig.vue_ls.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			init_options = {
+				typescript = { tsdk = tsdk }, -- make sure Volar uses the same TS as vtsls
+			},
+			-- optional: limit to vue to avoid overlap
+			filetypes = { "vue" },
+		})
+
 		lspconfig.pyright.setup({ capabilities = capabilities })
 	end,
 }

@@ -38,6 +38,11 @@ return {
 			"--filter=-legal/copyright",
 		}
 
+		lint.linters.flake8.args = {
+			"--max-line-length=88",
+			"--extend-ignore=E203,W503",
+		}
+
 		vim.api.nvim_create_autocmd({
 			"BufEnter",
 			"BufWritePost",
