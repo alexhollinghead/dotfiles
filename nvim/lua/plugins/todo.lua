@@ -7,12 +7,10 @@ return {
 	},
 	config = function()
 		require("todo-comments").setup()
-		vim.keymap.set(
-			"n",
-			"<leader>xt",
-			"<cmd>Trouble todo<cr>",
-			{ desc = "Find todos in Trouble" }
-		)
+		vim.api.nvim_create_user_command("Todo", "TodoTrouble", {})
+		vim.keymap.set("n", "<leader>tt", function()
+			require("trouble").toggle("todo")
+		end, { desc = "Toggle todos in Trouble" })
 		vim.keymap.set(
 			"n",
 			"<leader>ft",
