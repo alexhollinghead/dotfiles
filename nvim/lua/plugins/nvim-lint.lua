@@ -13,8 +13,9 @@ return {
 			typescript = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
-			python = { "flake8" },
+			python = { "ruff" },
 			cpp = { "cpplint" },
+			php = { "phpcs" },
 		}
 
 		lint.linters.luacheck = {
@@ -38,10 +39,13 @@ return {
 			"--filter=-legal/copyright",
 		}
 
-		lint.linters.flake8.args = {
-			"--max-line-length=88",
-			"--extend-ignore=E203,W503",
+		lint.linters.phpcs.args = {
+			"default_standard",
+			"PSR2",
 		}
+
+		table.insert(lint.linters.ruff.args, 2, "--line-length")
+		table.insert(lint.linters.ruff.args, 3, "79")
 
 		vim.api.nvim_create_autocmd({
 			"BufEnter",
@@ -50,7 +54,16 @@ return {
 		}, {
 			group = lint_augroup,
 			callback = function()
-				lint.try_lint()
+				local ok, err = pcall(lint.try_lint)
+				if not ok then
+					-- Only show error if it's not about a missing linter executable
+					if not (err:match("ENOENT") or err:match("no such file")) then
+						vim.notify(
+							"Linting error: " .. err,
+							vim.log.levels.ERROR
+						)
+					end
+				end
 			end,
 		})
 	end,

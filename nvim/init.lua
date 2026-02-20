@@ -14,9 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Editor settings
 require("core.options")
+require("core.keymaps")
 
 -- Load Plugins
 require("lazy").setup("plugins", {})
 
---Initialize colorscheme
--- require("core.colorscheme")
+-- Colorscheme managed by Themery plugin (:Themery to change themes)

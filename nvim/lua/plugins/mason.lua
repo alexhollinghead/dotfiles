@@ -5,12 +5,8 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
-		-- import mason
 		local mason = require("mason")
-
-		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason and configure icons
@@ -24,25 +20,33 @@ return {
 			},
 		})
 
+		-- LSP servers to install
 		mason_lspconfig.setup({
-			-- list of servers for mason to install
 			ensure_installed = {
-				"html",
 				"lua_ls",
-				"pyright",
+				"basedpyright",
+				"clangd",
+				"vtsls",
+				"html",
+				"intelephense",
 			},
-
-			--auto -install configured servers
 			automatic_installation = true,
+			automatic_enable = false,
 		})
 
+		-- Formatters and linters to install
+		-- Note: black, flake8, cpplint excluded - install via homebrew/pip instead
 		mason_tool_installer.setup({
 			ensure_installed = {
+				-- Formatters
 				"prettierd",
 				"stylua",
+				"clang-format",
+				"phpcbf",
+				-- Linters
 				"luacheck",
-				"black",
 				"eslint_d",
+				"phpcs",
 			},
 		})
 	end,

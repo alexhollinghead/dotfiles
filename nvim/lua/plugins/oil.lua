@@ -1,12 +1,12 @@
 return {
 	"stevearc/oil.nvim",
-	opts = {
-		vim.keymap.set(
-			"n",
+	opts = {},
+	keys = {
+		{
 			"-",
 			"<CMD>Oil<CR>",
-			{ desc = "Open parent directory" }
-		),
+			desc = "Open parent directory",
+		},
 	},
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
 }

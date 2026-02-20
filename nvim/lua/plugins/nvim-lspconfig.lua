@@ -7,10 +7,8 @@ return {
 	},
 
 	config = function()
-		require("mason").setup()
 
 		-- Global Configuration
-		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		local map = vim.keymap.set
 		local on_attach = function(_, bufnr)
@@ -42,9 +40,19 @@ return {
 			map("n", "gr", vim.lsp.buf.references, opts("Show references"))
 		end
 
-		-- Server Configuration
+		-- Server Configuration using vim.lsp.config (new Neovim 0.11+ API)
+		vim.lsp.config("html", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
 
-		lspconfig.clangd.setup({
+		vim.lsp.config("intelephense", {
+			filetypes = { "php" },
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		vim.lsp.config("clangd", {
 			capabilities = capabilities,
 			cmd = {
 				"clangd",
@@ -61,8 +69,9 @@ return {
 			end,
 		})
 
-		lspconfig.lua_ls.setup({
+		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
+			on_attach = on_attach,
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -74,20 +83,8 @@ return {
 
 		local vue_ls_root = vim.fn.stdpath("data")
 			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
-		local tsdk = vim.fn.stdpath("data")
-			.. "/mason/packages/vtsls/node_modules/typescript/lib"
 
-		local vue_language_server_path = vim.fn.stdpath("data")
-			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
-
-		local vue_plugin = {
-			name = "@vue/typescript-plugin",
-			location = vue_language_server_path,
-			languages = { "vue" },
-			configNamespace = "typescript",
-		}
-
-		lspconfig.vtsls.setup({
+		vim.lsp.config("vtsls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = {
@@ -113,17 +110,25 @@ return {
 			},
 		})
 
-		-- start vue_ls (Volar) for template intelligence, diagnostics, code actions
-		lspconfig.vue_ls.setup({
+		vim.lsp.config("basedpyright", {
 			capabilities = capabilities,
 			on_attach = on_attach,
-			init_options = {
-				typescript = { tsdk = tsdk }, -- make sure Volar uses the same TS as vtsls
+			settings = {
+				basedpyright = {
+					disableOrganizeImports = true,
+					analysis = {
+						ignore = { "*" },
+					},
+				},
 			},
-			-- optional: limit to vue to avoid overlap
-			filetypes = { "vue" },
 		})
 
-		lspconfig.pyright.setup({ capabilities = capabilities })
+		-- Enable the configured servers
+		vim.lsp.enable("html")
+		vim.lsp.enable("intelephense")
+		vim.lsp.enable("clangd")
+		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("vtsls")
+		vim.lsp.enable("basedpyright")
 	end,
 }
