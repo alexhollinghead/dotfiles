@@ -16,6 +16,7 @@ return {
 			python = { "ruff" },
 			cpp = { "cpplint" },
 			php = { "phpcs" },
+			go = { "golangcilint" },
 		}
 
 		lint.linters.luacheck = {
@@ -46,6 +47,14 @@ return {
 
 		table.insert(lint.linters.ruff.args, 2, "--line-length")
 		table.insert(lint.linters.ruff.args, 3, "79")
+
+		local golangci_parser = lint.linters.golangcilint.parser
+		lint.linters.golangcilint.parser = function(output, bufnr, cwd)
+			local diags = golangci_parser(output, bufnr, cwd)
+			return vim.tbl_filter(function(d)
+				return d.source ~= "typecheck"
+			end, diags)
+		end
 
 		vim.api.nvim_create_autocmd({
 			"BufEnter",

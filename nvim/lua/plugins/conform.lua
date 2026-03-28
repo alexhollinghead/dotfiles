@@ -17,6 +17,7 @@ return {
 				python = { "ruff_format" },
 				lua = { "stylua" },
 				cpp = { "clang-format" },
+				go = { "goimports" },
 			},
 			format_on_save = {
 				async = false,

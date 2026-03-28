@@ -123,6 +123,20 @@ return {
 			},
 		})
 
+		vim.lsp.config("gopls", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+			filetypes = { "go", "gomod", "gowork", "gotmpl" },
+			settings = {
+				gopls = {
+					analyses = {
+						unusedparams = true,
+					},
+					staticcheck = true,
+				},
+			},
+		})
+
 		-- Enable the configured servers
 		vim.lsp.enable("html")
 		vim.lsp.enable("intelephense")
@@ -130,5 +144,6 @@ return {
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("vtsls")
 		vim.lsp.enable("basedpyright")
+		vim.lsp.enable("gopls")
 	end,
 }

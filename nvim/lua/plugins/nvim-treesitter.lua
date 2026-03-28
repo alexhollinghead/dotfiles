@@ -20,6 +20,7 @@ return {
 				ensure_installed = {
 					"c",
 					"cpp",
+					"go",
 					"html",
 					"lua",
 					"markdown",
