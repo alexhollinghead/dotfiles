@@ -9,7 +9,6 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
 
-		-- enable mason and configure icons
 		mason.setup({
 			ui = {
 				icons = {
@@ -20,34 +19,16 @@ return {
 			},
 		})
 
-		-- LSP servers to install
 		mason_lspconfig.setup({
-			ensure_installed = {
-				"lua_ls",
-				"basedpyright",
-				"clangd",
-				"vtsls",
-				"html",
-				"intelephense",
-			},
+			ensure_installed = require("lang").mason_lsp(),
 			automatic_installation = true,
 			automatic_enable = false,
 		})
 
-		-- Formatters and linters to install
-		-- Note: black, flake8, cpplint excluded - install via homebrew/pip instead
+		-- Note: tools installed via brew/pip/go are omitted from lang files
+		-- so they don't appear here. See individual lang files for details.
 		mason_tool_installer.setup({
-			ensure_installed = {
-				-- Formatters
-				"prettierd",
-				"stylua",
-				"clang-format",
-				"phpcbf",
-				-- Linters
-				"luacheck",
-				"eslint_d",
-				"phpcs",
-			},
+			ensure_installed = require("lang").mason_tools(),
 		})
 	end,
 }

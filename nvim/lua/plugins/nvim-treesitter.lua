@@ -17,20 +17,10 @@ return {
 				lazy = false,
 				auto_install = true,
 
-				ensure_installed = {
-					"c",
-					"cpp",
-					"go",
-					"html",
-					"lua",
-					"markdown",
-					"python",
-					"javascript",
-					"json",
-					"typescript",
-					"tsx",
-					"vim",
-				},
+				ensure_installed = vim.list_extend(
+					{ "markdown", "json" }, -- syntax-only, no LSP
+					require("lang").parsers()
+				),
 
 				-- Endwise - end structures automatically
 				endwise = { enable = true },

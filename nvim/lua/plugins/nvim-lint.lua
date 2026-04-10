@@ -6,55 +6,14 @@ return {
 	},
 	config = function()
 		local lint = require("lint")
+		local langs = require("lang")
 
-		lint.linters_by_ft = {
-			javascript = { "eslint_d" },
-			lua = { "luacheck" },
-			typescript = { "eslint_d" },
-			typescriptreact = { "eslint_d" },
-			svelte = { "eslint_d" },
-			python = { "ruff" },
-			cpp = { "cpplint" },
-			php = { "phpcs" },
-			go = { "golangcilint" },
-		}
+		lint.linters_by_ft = langs.linters_by_ft()
+		langs.apply_linter_configs(lint)
 
-		lint.linters.luacheck = {
-			cmd = "luacheck",
-			stdin = true,
-			args = {
-				"--globals",
-				"vim",
-			},
-			stream = "stdout",
-			ignore_exitcode = true,
-			parser = require("lint.parser").from_errorformat("%f:%l:%c: %m", {
-				source = "luacheck",
-			}),
-		}
 		local lint_augroup = vim.api.nvim_create_augroup("lint", {
 			clear = true,
 		})
-
-		lint.linters.cpplint.args = {
-			"--filter=-legal/copyright",
-		}
-
-		lint.linters.phpcs.args = {
-			"default_standard",
-			"PSR2",
-		}
-
-		table.insert(lint.linters.ruff.args, 2, "--line-length")
-		table.insert(lint.linters.ruff.args, 3, "79")
-
-		local golangci_parser = lint.linters.golangcilint.parser
-		lint.linters.golangcilint.parser = function(output, bufnr, cwd)
-			local diags = golangci_parser(output, bufnr, cwd)
-			return vim.tbl_filter(function(d)
-				return d.source ~= "typecheck"
-			end, diags)
-		end
 
 		vim.api.nvim_create_autocmd({
 			"BufEnter",

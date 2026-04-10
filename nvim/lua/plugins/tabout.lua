@@ -10,6 +10,6 @@ return {
 	opts = {
 		act_as_tab = true,
 		act_as_shift_tab = true,
-		completion = false,
+		completion = true,
 	},
 }
