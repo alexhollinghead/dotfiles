@@ -1,9 +1,6 @@
 -- Leader key
 vim.g.mapleader = " "
 
--- File explorer
-vim.keymap.set("n", "<leader>d", vim.cmd.Ex)
-
 -- Buffer management
 vim.keymap.set("n", "<leader>q", ":bd<CR>", { noremap = true, silent = true })
 

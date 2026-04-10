@@ -3,22 +3,10 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local conform = require("conform")
+		local langs = require("lang")
+
 		conform.setup({
-			formatters_by_ft = {
-				javascript = { "prettierd" },
-				typescript = { "prettierd" },
-				typescriptreact = { "prettierd" },
-				svelte = { "prettierd" },
-				vue = { "prettierd" },
-				html = { "prettierd" },
-				css = { "prettierd" },
-				php = { "phpcbf" },
-				json = { "prettierd" },
-				python = { "ruff_format" },
-				lua = { "stylua" },
-				cpp = { "clang-format" },
-				go = { "goimports" },
-			},
+			formatters_by_ft = langs.formatters_by_ft(),
 			format_on_save = {
 				async = false,
 				lsp_fallback = true,
@@ -26,18 +14,7 @@ return {
 			},
 		})
 
-		require("conform").formatters.phpcbf = {
-			args = { "--standard=PSR2", "$FILENAME" },
-			stdin = false,
-		}
-
-		require("conform").formatters.stylua = {
-			prepend_args = { "--column-width", "80" },
-		}
-
-		require("conform").formatters.ruff_format = {
-			args = { "format", "--line-length", "79", "--force-exclude", "--stdin-filename", "$FILENAME", "-" },
-		}
+		langs.apply_formatter_configs(conform)
 
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
 			conform.format({

@@ -59,7 +59,7 @@ return {
 					elseif luasnip.locally_jumpable(1) then
 						luasnip.jump(1)
 					else
-						require("tabout").tabout()
+						fallback()
 					end
 				end, { "i", "s" }),
 
@@ -69,7 +69,7 @@ return {
 					elseif luasnip.locally_jumpable(-1) then
 						luasnip.jump(-1)
 					else
-						require("tabout").taboutBack()
+						fallback()
 					end
 				end, { "i", "s" }),
 			}),
