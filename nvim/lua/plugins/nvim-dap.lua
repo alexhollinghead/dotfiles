@@ -1,6 +1,17 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+		keys = {
+			{ "<leader>db", desc = "DAP Toggle breakpoint" },
+			{ "<leader>dc", desc = "DAP Continue" },
+			{ "<leader>di", desc = "DAP Step into" },
+			{ "<leader>do", desc = "DAP Step over" },
+			{ "<leader>dO", desc = "DAP Step out" },
+			{ "<leader>dt", desc = "DAP Terminate" },
+			{ "<leader>dr", desc = "DAP Open REPL" },
+			{ "<leader>dl", desc = "DAP Run last" },
+			{ "<leader>du", desc = "DAP Toggle UI" },
+		},
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio", -- required by nvim-dap-ui

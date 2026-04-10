@@ -1,5 +1,6 @@
 return {
 	"AckslD/nvim-neoclip.lua",
+	keys = { "<leader>fy" },
 	dependencies = {
 		"nvim-telescope/telescope.nvim",
 	},

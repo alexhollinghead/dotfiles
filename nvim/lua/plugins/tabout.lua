@@ -1,7 +1,6 @@
 return {
 	"abecodes/tabout.nvim",
-	lazy = false,
-	priority = 1000,
+	event = "InsertEnter",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"L3MON4D3/LuaSnip",
