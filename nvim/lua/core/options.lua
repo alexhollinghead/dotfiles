@@ -1,3 +1,6 @@
+-- Enable 24-bit color (required by colorizer, virt-column, indent-blankline, etc.)
+vim.opt.termguicolors = true
+
 -- Line numbering
 vim.wo.relativenumber = true
 vim.wo.number = true

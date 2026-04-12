@@ -5,6 +5,7 @@ local lang_files = {
 	"python",
 	"go",
 	"typescript",
+	"c",
 	"cpp",
 	"lua_lang",
 	"php",

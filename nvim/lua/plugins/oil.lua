@@ -1,7 +1,15 @@
 return {
 	"stevearc/oil.nvim",
 	lazy = false,
-	opts = {},
+	opts = {
+		columns = {
+			"icon",
+			"size",
+			"mtime",
+		},
+		delete_to_trash = true,
+		watch_for_changes = true,
+	},
 	keys = {
 		{
 			"-",
