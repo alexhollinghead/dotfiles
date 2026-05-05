@@ -1,12 +1,10 @@
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
-	lazy = false,
+	keys = {
+		{ "<leader>zd", function() Snacks.toggle.dim():toggle() end, desc = "Toggle dim" },
+	},
 	opts = {
 		dim = {},
 	},
-	config = function(_, opts)
-		require("snacks").setup(opts)
-		Snacks.toggle.dim():map("<leader>zd")
-	end,
 }
