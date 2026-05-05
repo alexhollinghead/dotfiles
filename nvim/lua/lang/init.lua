@@ -67,6 +67,12 @@ function M.lsp_servers()
 				post_attach = lang.lsp.post_attach,
 			}
 		end
+		for _, lsp in ipairs(lang.lsp_servers or {}) do
+			out[lsp.server] = {
+				config = lsp.config or {},
+				post_attach = lsp.post_attach,
+			}
+		end
 	end
 	return out
 end

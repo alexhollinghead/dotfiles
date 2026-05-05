@@ -14,7 +14,7 @@ return {
 	},
 
 	formatters = {
-		by_ft = { php = { "phpcbf" } },
+		by_ft = { php = { "prettierd", "phpcbf", stop_after_first = true } },
 		config = {
 			phpcbf = {
 				args = { "--standard=PSR2", "$FILENAME" },

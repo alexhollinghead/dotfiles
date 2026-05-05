@@ -2,13 +2,22 @@ return {
 	treesitter = { "html" },
 
 	mason = {
-		lsp = { "html" },
+		lsp = { "html", "emmet_language_server" },
 		tools = {}, -- prettierd already pulled in by typescript.lua
 	},
 
 	lsp = {
 		server = "html",
 		config = {},
+	},
+
+	lsp_servers = {
+		{
+			server = "emmet_language_server",
+			config = {
+				filetypes = { "html", "php", "css" },
+			},
+		},
 	},
 
 	formatters = {
