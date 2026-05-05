@@ -1,5 +1,6 @@
 return {
 	"zaldih/themery.nvim",
+	cmd = "Themery",
 	config = function()
 		require("themery").setup({
 			themes = {
