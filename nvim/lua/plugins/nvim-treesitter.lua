@@ -2,7 +2,6 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		"nvim-treesitter/nvim-treesitter-context",
 		build = function()
 			pcall(
 				require("nvim-treesitter.install").update({ with_sync = true })
@@ -14,7 +13,6 @@ return {
 		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				lazy = false,
 				auto_install = true,
 
 				ensure_installed = vim.list_extend(
@@ -72,13 +70,17 @@ return {
 						},
 					},
 				},
-				require("nvim-ts-autotag").setup({
-					lazy = false,
-					enable = true,
-					filetypes = { "html", "xml", "tsx", "typescriptreact" },
-				}),
-				require("treesitter-context").setup(),
 			})
 		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		ft = { "html", "xml", "tsx", "typescriptreact", "javascriptreact", "vue", "svelte" },
+		opts = {},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "BufReadPost",
+		opts = {},
 	},
 }
