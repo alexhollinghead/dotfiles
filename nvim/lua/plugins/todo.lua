@@ -3,8 +3,6 @@ return {
 	event = "BufReadPost",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
-		"folke/trouble.nvim",
 	},
 	config = function()
 		require("todo-comments").setup()
